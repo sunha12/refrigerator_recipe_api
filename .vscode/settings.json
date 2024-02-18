@@ -1,0 +1,8 @@
+{
+    "editor.tabSize": 2,
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#6e5206", //왼쪽바 색상 변경
+        "titleBar.activeBackground": "#f7c3089d", //상단바 색상 변경
+        "titleBar.inactiveBackground": "#f7bf089d" //비활성화 상태의 상단바 색상
+    }
+}

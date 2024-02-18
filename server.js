@@ -69,7 +69,7 @@ app.use(async function (req, res, next) {
 //============================================================================
 
 //응답 테스트
-app.use('/question', require('./routes/question'));
+app.use('/test', require('./routes/test'));
 
 //관리자 페이지
 app.use('/admin', require('./routes/admin'));
