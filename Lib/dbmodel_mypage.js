@@ -4,12 +4,12 @@ const cmm = require('../Lib/cmm')
 const mecab = require('mecab-ya');
 
 //============================================================================
-// ingredients 식재료
+// mypage
 //============================================================================
 
 
-//식재료/조미료 리스트
-exports.ingredients_list = async (req, callback) => {
+//참고용
+exports.cate_recipe_list = async (req, callback) => {
 
   const { b_idx } = req.query;
 
@@ -18,7 +18,7 @@ exports.ingredients_list = async (req, callback) => {
 
   const sql = ` 
   select 
-    i.ingredients_idx,
+    i.ingredients_idx, 
     i.ingredients_nm,
     i.b_idx,
     i.ingredients_dt,

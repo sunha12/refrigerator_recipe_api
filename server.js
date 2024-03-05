@@ -77,6 +77,12 @@ app.use('/admin', require('./routes/admin'));
 // ingredients 식재료
 app.use('/ingredients', require('./routes/ingredients'));
 
+// recipe 레시피
+app.use('/recipe', require('./routes/recipe'));
+
+// mypage 레시피
+app.use('/mypage', require('./routes/mypage'));
+
 //============================================================================
 // ROUTES END !!
 //============================================================================
