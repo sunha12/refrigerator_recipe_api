@@ -74,6 +74,9 @@ app.use('/test', require('./routes/test'));
 //관리자 페이지
 app.use('/admin', require('./routes/admin'));
 
+// ingredients 식재료
+app.use('/ingredients', require('./routes/ingredients'));
+
 //============================================================================
 // ROUTES END !!
 //============================================================================
