@@ -33,3 +33,57 @@ exports.ingredients_list = async (req, callback) => {
     });
 
 };
+
+//냉장고 속 식재료/조미료
+exports.ref_ingredients_list = async (req, callback) => {
+
+  const { user_idx, b_idx } = req.query;
+
+  param = [user_idx];
+  where = ``;;
+
+  if (b_idx) {
+    where = `and b_idx = ?;`;
+    param = [user_idx, b_idx];
+  }
+
+  const sql = ` 
+  select * 
+  from refrigerator ref
+  where user_idx = ? 
+  ${where};
+  ` ;
+
+  DB('GET', sql, param)
+    .then((result) => {
+      callback(result);
+    });
+
+};
+
+
+//식재료/조미료 상세
+exports.ingredients_detail = async (req, callback) => {
+
+  const { ing_idx, user_idx } = req.query;
+
+  param = [ing_idx, user_idx];
+  where = ``;;
+
+
+  const sql = ` 
+  select * 
+  from refrigerator ref
+  where ref.ingredients_idx = ? and user_idx = ?
+  ` ;
+
+  DB('GET', sql, param)
+    .then((result) => {
+      callback(result);
+    });
+
+};
+
+//재료 수정
+
+//식재료/조미료 추가

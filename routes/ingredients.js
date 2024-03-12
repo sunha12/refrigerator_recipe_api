@@ -15,4 +15,18 @@ router.get('/ingredients-list', (req, res) => {
   });
 })
 
+//냉장고 속 식재료 조미료
+router.get('/ref-ingredients-list', (req, res) => {
+  dbModel.ref_ingredients_list(req, (data) => {
+    cmm.ResData(res, data);
+  });
+})
+
+//재료 상세
+router.get('/ingredients-detail', (req, res) => {
+  dbModel.ingredients_detail(req, (data) => {
+    cmm.ResData(res, data);
+  });
+})
+
 module.exports = router;

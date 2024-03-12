@@ -21,6 +21,7 @@ app.use(function (req, res, next) {
     'http://localhost:3000',
     'http://localhost:3001',
     'http://127.0.0.1:4512',
+    'https://211.45.170.191:4512',
     'https://app.codingduo.co.kr',
     'https://auth.codingduo.co.kr',
     'https://api.codingduo.co.kr',

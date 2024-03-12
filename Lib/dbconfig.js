@@ -1,4 +1,4 @@
-/** TEST SERVER */
+/** REAL SERVER */
 module.exports = {
     host: '211.45.170.191',
     port: '33306',
