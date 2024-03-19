@@ -16,15 +16,31 @@ router.get('/ingredients-list', (req, res) => {
 })
 
 //냉장고 속 식재료 조미료
-router.get('/ref-ingredients-list', (req, res) => {
-  dbModel.ref_ingredients_list(req, (data) => {
+router.get('/ref-ing-list', (req, res) => {
+  dbModel.ref_ing_list(req, (data) => {
     cmm.ResData(res, data);
   });
 })
 
-//재료 상세
-router.get('/ingredients-detail', (req, res) => {
-  dbModel.ingredients_detail(req, (data) => {
+//냉장고 속 식재료/조미료 상세
+router.get('/ref-ing-detail', (req, res) => {
+  dbModel.ref_ing_detail(req, (data) => {
+    cmm.ResData(res, data);
+  });
+})
+
+//냉장고 속 식재료/조미료 수정
+router.post('/ref-ing-edit', (req, res) => {
+  dbModel.ref_ing_edit(req, (data) => {
+    cmm.ResData(res, data);
+  });
+})
+
+//냉장고 속 식재료/조미료 이미지 수정
+
+//냉장고 속 식재료/조미료 추가
+router.post('/ref-ing-add', (req, res) => {
+  dbModel.ref_ing_add(req, (data) => {
     cmm.ResData(res, data);
   });
 })
