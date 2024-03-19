@@ -34,7 +34,7 @@ exports.ingredients_list = async (req, callback) => {
 
 };
 
-//냉장고 속 식재료/조미료
+//냉장고 속 식재료/조미료 리스트
 exports.ref_ing_list = async (req, callback) => {
 
   const { user_idx, b_idx } = req.query;
