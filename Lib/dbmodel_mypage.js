@@ -33,3 +33,92 @@ exports.cate_recipe_list = async (req, callback) => {
     });
 
 };
+
+// 최근 본 레시피 목록 조회
+exports.getRecentlyViewedRecipes = async (req, callback) => {
+  const { userIdx } = req.query; 
+
+  const params = [userIdx];
+  const where = `WHERE rvr.user_idx = ?`; 
+
+  const sql = `
+    SELECT 
+      r.rcp_idx, 
+      r.rcp_nm, 
+      r.rcp_image
+    FROM recipe r
+    JOIN recent_view_recipe rvr ON r.rcp_idx = rvr.rcp_idx
+    ${where}  
+    ORDER BY rvr.cre_dt DESC;
+  `;
+
+  DB('GET', sql, params)
+    .then((result) => {
+      callback(result);
+    });
+};
+
+
+// 스크랩한 레시피 목록 조회
+exports.getScrapedRecipes = async (req, callback) => {
+  const { userIdx } = req.query; 
+
+  const params = [userIdx];
+  const where = `WHERE sr.user_idx = ?`; 
+
+  const sql = `
+    SELECT 
+      r.rcp_idx, 
+      r.rcp_nm, 
+      r.rcp_image
+    FROM recipe r
+    JOIN scrap_recipe sr ON r.rcp_idx = sr.rcp_idx
+    ${where}; 
+  `;
+
+  DB('GET', sql, params)
+    .then((result) => {
+      callback(result);
+    });
+};
+
+
+// 새 레시피 등록
+exports.addNewRecipe = async (req, callback) => {
+  const { userIdx, rcpNm, rcpImage } = req.body; 
+
+  const params = [userIdx, rcpNm, rcpImage]; 
+
+  const sql = `
+    INSERT INTO recipe (user_idx, rcp_nm, rcp_image)
+    VALUES (?, ?, ?);
+  `;
+
+  DB('POST', sql, params)
+    .then((result) => {
+      callback(result);
+    });
+};
+
+
+// 나의 레시피 목록 조회
+exports.getMyRecipes = async (req, callback) => {
+  const { userIdx } = req.query; 
+
+  const params = [userIdx];
+  const where = `WHERE user_idx = ?`; 
+
+  const sql = `
+    SELECT 
+      rcp_idx, 
+      rcp_nm, 
+      rcp_image
+    FROM recipe
+    ${where}; 
+  `;
+
+  DB('GET', sql, params)
+    .then((result) => {
+      callback(result);
+    });
+};
