@@ -42,4 +42,18 @@ router.get('/my-recipes', (req, res) => {
   });
 });
 
+// 알람 설정 조회
+router.get('/alarm-settings', (req, res) => {
+  dbModel.getAlarmSettings(req, (data) => {
+    cmm.ResData(res, data);
+  });
+});
+
+// 알람 설정 업데이트
+router.post('/update-alarm-settings', (req, res) => {
+  dbModel.updateAlarmSettings(req, (result) => {
+    cmm.ResData(res, result);
+  });
+});
+
 module.exports = router;

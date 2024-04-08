@@ -36,19 +36,20 @@ exports.cate_recipe_list = async (req, callback) => {
 
 // 최근 본 레시피 목록 조회
 exports.getRecentlyViewedRecipes = async (req, callback) => {
-  const { userIdx } = req.query; 
+  const { userIdx } = req.query;
 
   const params = [userIdx];
-  const where = `WHERE rvr.user_idx = ?`; 
+  const where = `WHERE rvr.user_idx = ?`;
 
   const sql = `
     SELECT 
       r.rcp_idx, 
       r.rcp_nm, 
-      r.rcp_image
+      r.rcp_image,
+      rvr.cre_dt
     FROM recipe r
     JOIN recent_view_recipe rvr ON r.rcp_idx = rvr.rcp_idx
-    ${where}  
+    ${where}
     ORDER BY rvr.cre_dt DESC;
   `;
 
@@ -61,19 +62,21 @@ exports.getRecentlyViewedRecipes = async (req, callback) => {
 
 // 스크랩한 레시피 목록 조회
 exports.getScrapedRecipes = async (req, callback) => {
-  const { userIdx } = req.query; 
+  const { userIdx } = req.query;
 
   const params = [userIdx];
-  const where = `WHERE sr.user_idx = ?`; 
+  const where = `WHERE sr.user_idx = ?`;
 
   const sql = `
     SELECT 
       r.rcp_idx, 
       r.rcp_nm, 
-      r.rcp_image
+      r.rcp_image,
+      sr.cre_dt
     FROM recipe r
     JOIN scrap_recipe sr ON r.rcp_idx = sr.rcp_idx
-    ${where}; 
+    ${where}
+    ORDER BY sr.cre_dt DESC;
   `;
 
   DB('GET', sql, params)
@@ -121,4 +124,38 @@ exports.getMyRecipes = async (req, callback) => {
     .then((result) => {
       callback(result);
     });
+};
+
+// 알람 설정 조회
+exports.getAlarmSettings = async (req, callback) => {
+  const { userIdx } = req.query;
+
+  const sql = `
+    SELECT 
+      al_no_stime, 
+      al_no_etime
+    FROM settings
+    WHERE user_idx = ?;
+  `;
+
+  DB('GET', sql, [userIdx]).then((result) => {
+    callback(result);
+  });
+};
+
+// 알람 설정 업데이트
+exports.updateAlarmSettings = async (req, callback) => {
+  const { userIdx, alNoStime, alNoEtime } = req.body;
+
+  const sql = `
+    UPDATE settings
+    SET 
+      al_no_stime = ?, 
+      al_no_etime = ?
+    WHERE user_idx = ?;
+  `;
+
+  DB('POST', sql, [alNoStime, alNoEtime, userIdx]).then((result) => {
+    callback(result);
+  });
 };
