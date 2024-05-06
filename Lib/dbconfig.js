@@ -1,6 +1,6 @@
 /** REAL SERVER */
 module.exports = {
-    host: '211.45.170.191',
+    host: '127.0.0.1',
     port: '33306',
     user: "codingduo",
     password: "Codingduo12*",

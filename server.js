@@ -20,12 +20,15 @@ app.use(function (req, res, next) {
   const allowedOrigins = [
     'http://localhost:3000',
     'http://localhost:3001',
+    'http://localhost:4513',
+    'http://localhost:4514',
+    'http://localhost:4515',
     'http://127.0.0.1:4512',
     'https://211.45.170.191:4512',
-    'https://app.codingduo.co.kr',
-    'https://auth.codingduo.co.kr',
-    'https://api.codingduo.co.kr',
-    'https://admin.codingduo.co.kr',
+    'https://app.refrigerator_recipe.co.kr',
+    'https://auth.refrigerator_recipe.co.kr',
+    'https://api.refrigerator_recipe.co.kr',
+    'https://admin.refrigerator_recipe.co.kr',
     'https://codingduo.co.kr',
   ];
 
